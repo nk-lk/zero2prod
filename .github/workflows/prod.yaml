@@ -20,8 +20,8 @@ jobs:
     
     - name: Run Postgres docker container
       run: |
-        chmod +x scripts/init_db.sh
-        ./scripts/init_db.sh
+        chmod +x zero2prod/scripts/init_db.sh
+        ./zero2prod/scripts/init_db.sh
 
     - name: Build and test code
       run: |
