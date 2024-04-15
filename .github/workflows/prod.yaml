@@ -1,0 +1,34 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - master
+
+# env:
+#   SQLX_OFFLINE: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+   
+    
+          
+    - name: Install psql and sqlx-cli
+      run: sudo apt-get install -y postgresql
+      run: cargo install sqlx-cli --no-default-features --features rustls,postgres   
+
+    steps:
+    - name: Run Postgres docker container
+      run: chmod +x scripts/init_db.sh
+      run: ./scripts/init_db.sh
+      
+    - name: Build and test code
+      run: |
+        cargo build --verbose
+        cargo test --verbose
+
+    
+
+  
